@@ -8,8 +8,8 @@
   ],
   "logo": "https://telegra.ph/file/64a33f1fe14c0e26c39b1.jpg",
   "success_url": "https://telegram.dog/mo_Tech_Yt",
-  "website": "https://github.com/MuhammedRk/MT-StylishText-Bot",
-  "repository": "https://github.com/MuhammedRk/Stylish-Text",
+  "website": "https://github.com/MuhammedRk",
+  "repository": "https://github.com/MuhammedRk/100",
   "env": {
     "WEBHOOK": {
       "description": "Setting this to ANYTHING will enable webhooks when in env mode",
