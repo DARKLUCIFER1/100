@@ -20,7 +20,6 @@ async def start(c, m):
 **👲 𝕄𝕒𝕚𝕟𝕥𝕒𝕚𝕟𝕖𝕕 𝔹𝕪:** {owner.mention(style='md')}
 """
 
-    # Buttons
     buttons = [
         [
             InlineKeyboardButton('👨‍💼𝕄𝕪 𝔽𝕒𝕥𝕙𝕖𝕣👨‍💼', url=f"https://t.me/{owner_username}")
@@ -81,7 +80,7 @@ async def style_buttons(c, m, cb=False):
 
 
 @Client.on_callback_query(filters.regex('^nxt'))
-async def nxt(c, m):
+async def nxt(c, m, cb2=False):
     if m.data == "nxt":
         buttons = [[
             InlineKeyboardButton('🇸 🇵 🇪 🇨 🇮 🇦 🇱 ', callback_data='style+special'),
@@ -108,13 +107,33 @@ async def nxt(c, m):
             InlineKeyboardButton('S̶t̶r̶i̶k̶e̶', callback_data='style+strike'),
             InlineKeyboardButton('F༙r༙o༙z༙e༙n༙', callback_data='style+frozen')
             ],[
+            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0'),
+            InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
+        ]]
+        await m.answer()
+        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
+        if not cb2:
+            await m.reply_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+    else:
+        await style_buttons(c, m, cb=True)
+        await m.answer()
+        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
+
+
+
+@Client.on_callback_query(filters.regex('^nxt2'))
+async def nxt2(c, m):
+    if m.data == "nxt2":
+        buttons = [[
+            InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+motech')
+            ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0')
         ]]
         await m.answer()
         await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
     else:
         await style_buttons(c, m, cb=True)
-
+       
 
 @Client.on_callback_query(filters.regex('^style'))
 async def style(c, m):
