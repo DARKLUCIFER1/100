@@ -80,7 +80,7 @@ async def style_buttons(c, m, cb=False):
 
 
 @Client.on_callback_query(filters.regex('^nxt'))
-async def nxt(c, m, cb2=False):
+async def nxt(c, m):
     if m.data == "nxt":
         buttons = [[
             InlineKeyboardButton('🇸 🇵 🇪 🇨 🇮 🇦 🇱 ', callback_data='style+special'),
