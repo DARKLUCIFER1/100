@@ -113,10 +113,9 @@ async def nxt(c, m):
         
         reply_markup = InlineKeyboardMarkup(buttons)
 
-        await bot.send_photo(
+        await bot.send_message(
         chat_id=update.chat.id,
-        photo="https://telegra.ph/file/9e831d15da94deb56ef4c.jpg",
-        caption=Translation.NXT,
+        text=Translation.NXT,
         reply_markup=reply_markup,
         parse_mode="html",
         reply_to_message_id=update.message_id
@@ -134,10 +133,9 @@ async def nxt2(c, m):
         
         reply_markup = InlineKeyboardMarkup(buttons)
 
-        await bot.send_photo(
+        await bot.send_message(
         chat_id=update.chat.id,
-        photo="https://telegra.ph/file/9e831d15da94deb56ef4c.jpg",
-        caption=Translation.NXT2,
+        text=Translation.NXT2,
         reply_markup=reply_markup,
         disable_web_page_preview=True,
         parse_mode="html",
