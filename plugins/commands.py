@@ -2,7 +2,7 @@ import os
 from config import Config
 from .fonts import Fonts
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
 @Client.on_message(filters.command('start'))
@@ -80,7 +80,7 @@ async def style_buttons(c, m, cb=False):
 
 
 @Client.on_callback_query(filters.regex('^nxt'))
-async def nxt(c, m):
+async def nxt(c, m, cb2=False):
     if m.data == "nxt":
         buttons = [[
             InlineKeyboardButton('🇸 🇵 🇪 🇨 🇮 🇦 🇱 ', callback_data='style+special'),
@@ -110,16 +110,14 @@ async def nxt(c, m):
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0'),
             InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
         ]]
-        
-        reply_markup = InlineKeyboardMarkup(buttons)
-
-        await nxt.send_text(
-        chat_id=update.chat.id,
-        text=Translation.NXT,
-        reply_markup=reply_markup,
-        parse_mode="html",
-        reply_to_message_id=update.message_id
-    )
+        await m.answer()
+        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
+    if not cb2:
+        await m.reply_text2(m.text2, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+    else:
+        await style_buttons(c, m, cb=True)
+        await m.answer()
+        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
     
 
 @Client.on_callback_query(filters.regex('^nxt2'))
@@ -130,17 +128,11 @@ async def nxt2(c, m):
             ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0')
         ]]
+        await m.answer()
+        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
+    else:
+        await style_buttons(c, m, cb2=True)
         
-        reply_markup = InlineKeyboardMarkup(buttons)
-
-        await nxt2.send_text(
-        chat_id=update.chat.id,
-        text=Translation.NXT2,
-        reply_markup=reply_markup,
-        disable_web_page_preview=True,
-        parse_mode="html",
-        reply_to_message_id=update.message_id
-    )
        
 
 @Client.on_callback_query(filters.regex('^style'))
