@@ -2,13 +2,13 @@ import os
 from config import Config
 from .fonts import Fonts
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQueryHandler
 
 
 @Client.on_message(filters.command('start'))
 async def start(c, m):
     owner = await c.get_users(int(Config.OWNER_ID))
-    owner_username = owner.username if owner.username else 'Ns_bot_updates'
+    owner_username = owner.username if owner.username else 'Mo_Tech_YT'
 
     # start text
     text = f"""**👋ℍ𝕖𝕝𝕝𝕠! {m.from_user.mention(style='md')}**,
@@ -110,16 +110,18 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0'),
             InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
         ]]
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
-        if not cb2:
-            await m.reply_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
-    else:
-        await style_buttons(c, m, cb=True)
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
+        
+        reply_markup = InlineKeyboardMarkup(buttons)
 
-
+        await bot.send_photo(
+        chat_id=update.chat.id,
+        photo="https://telegra.ph/file/9e831d15da94deb56ef4c.jpg",
+        caption=Translation.NXT,
+        reply_markup=reply_markup,
+        parse_mode="html",
+        reply_to_message_id=update.message_id
+    )
+    
 
 @Client.on_callback_query(filters.regex('^nxt2'))
 async def nxt2(c, m):
@@ -129,10 +131,18 @@ async def nxt2(c, m):
             ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0')
         ]]
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
-    else:
-        await style_buttons(c, m, cb=True)
+        
+        reply_markup = InlineKeyboardMarkup(buttons)
+
+        await bot.send_photo(
+        chat_id=update.chat.id,
+        photo="https://telegra.ph/file/9e831d15da94deb56ef4c.jpg",
+        caption=Translation.NXT2,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+        parse_mode="html",
+        reply_to_message_id=update.message_id
+    )
        
 
 @Client.on_callback_query(filters.regex('^style'))
