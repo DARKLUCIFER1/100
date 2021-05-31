@@ -113,7 +113,7 @@ async def nxt(c, m):
         
         reply_markup = InlineKeyboardMarkup(buttons)
 
-        await nxt.send_message(
+        await nxt.send_text(
         chat_id=update.chat.id,
         text=Translation.NXT,
         reply_markup=reply_markup,
@@ -133,7 +133,7 @@ async def nxt2(c, m):
         
         reply_markup = InlineKeyboardMarkup(buttons)
 
-        await nxt2.send_message(
+        await nxt2.send_text(
         chat_id=update.chat.id,
         text=Translation.NXT2,
         reply_markup=reply_markup,
