@@ -2,7 +2,7 @@ import os
 from config import Config
 from .fonts import Fonts
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 
 
 @Client.on_message(filters.command('start'))
@@ -110,19 +110,16 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0'),
             InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
         ]]
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
-    if not cb2:
-        await m.reply_text(m.text2, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
-    else:
-        await style_buttons(c, m, cb=True)
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
-    
+        await bot.send_text(
+        chat_id=update.chat.id,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+        parse_mode="nxt2",
+        reply_to_message_id=update.message_id
 
-@Client.on_callback_query(filters.regex('^nxt2'))
+@Client.on_callback_query(filters.regex('^nxt2') & filters.incoming & filters.text)
 async def nxt2(c, m):
-    if m.data == "nxt2":
+    if m.data == "nxt":
         buttons = [[
             InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+motech')
             ],[
