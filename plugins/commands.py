@@ -40,7 +40,7 @@ async def start(c, m):
 
 
 @Client.on_message(filters.private & filters.incoming & filters.text)
-async def style_buttons(c, m, cb=False):
+async def style_buttons(c, m):
     buttons = [[
         InlineKeyboardButton('𝚃𝚢𝚙𝚎𝚠𝚛𝚒𝚝𝚎𝚛', callback_data='style+typewriter'),
         InlineKeyboardButton('𝕆𝕦𝕥𝕝𝕚𝕟𝕖', callback_data='style+outline'),
@@ -72,15 +72,17 @@ async def style_buttons(c, m, cb=False):
         ],[
         InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt")
     ]]
-    if not cb:
-        await m.reply_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
-    else:
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
+    await bot.send_text(
+        chat_id=update.chat.id,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+        parse_mode="html",
+        reply_to_message_id=update.message_id
+    )
 
 
 @Client.on_callback_query(filters.regex('^nxt') & filters.incoming & filters.text)
-async def nxt(c, m, cb2=False):
+async def nxt(c, m):
     if m.data == "nxt":
         buttons = [[
             InlineKeyboardButton('🇸 🇵 🇪 🇨 🇮 🇦 🇱 ', callback_data='style+special'),
@@ -114,25 +116,27 @@ async def nxt(c, m, cb2=False):
            chat_id=update.chat.id,
            reply_markup=reply_markup,
            disable_web_page_preview=True,
-           parse_mode="nxt2",
+           parse_mode="html",
            reply_to_message_id=update.message_id
        )
 
 
 @Client.on_callback_query(filters.regex('^nxt2') & filters.incoming & filters.text)
 async def nxt2(c, m):
-    if m.data == "nxt":
+    if m.data == "nxt2":
         buttons = [[
             InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+motech')
             ],[
-            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0')
+            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='next')
         ]]
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
-    else:
-        await style_buttons(c, m, cb=True)
-        
-       
+        await bot.send_text(
+            chat_id=update.chat.id,
+            reply_markup=reply_markup,
+            disable_web_page_preview=True,
+            parse_mode="html",
+            reply_to_message_id=update.message_id
+        )
+
 
 @Client.on_callback_query(filters.regex('^style'))
 async def style(c, m):
