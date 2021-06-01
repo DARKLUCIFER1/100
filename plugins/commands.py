@@ -117,6 +117,7 @@ async def nxt(c, m, cb2=False):
         parse_mode="nxt2",
         reply_to_message_id=update.message_id
 
+
 @Client.on_callback_query(filters.regex('^nxt2') & filters.incoming & filters.text)
 async def nxt2(c, m):
     if m.data == "nxt":
