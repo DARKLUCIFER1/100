@@ -79,7 +79,7 @@ async def style_buttons(c, m, cb=False):
         await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
 
 
-@Client.on_callback_query(filters.regex('^nxt'))
+@Client.on_callback_query(filters.regex('^nxt') & filters.incoming & filters.text)
 async def nxt(c, m, cb2=False):
     if m.data == "nxt":
         buttons = [[
@@ -108,7 +108,7 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('F༙r༙o༙z༙e༙n༙', callback_data='style+frozen')
             ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0'),
-            InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt+2")
+            InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
         ]]
         await m.answer()
         await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
