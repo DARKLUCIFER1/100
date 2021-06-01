@@ -111,11 +111,12 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
         ]]
         await bot.send_text(
-        chat_id=update.chat.id,
-        reply_markup=reply_markup,
-        disable_web_page_preview=True,
-        parse_mode="nxt2",
-        reply_to_message_id=update.message_id
+           chat_id=update.chat.id,
+           reply_markup=reply_markup,
+           disable_web_page_preview=True,
+           parse_mode="nxt2",
+           reply_to_message_id=update.message_id
+       )
 
 
 @Client.on_callback_query(filters.regex('^nxt2') & filters.incoming & filters.text)
