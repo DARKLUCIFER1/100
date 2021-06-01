@@ -108,12 +108,12 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('F༙r༙o༙z༙e༙n༙', callback_data='style+frozen')
             ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0'),
-            InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
+            InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt+2")
         ]]
         await m.answer()
         await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
     if not cb2:
-        await m.reply_text2(m.text2, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+        await m.reply_text(m.text2, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
     else:
         await style_buttons(c, m, cb=True)
         await m.answer()
