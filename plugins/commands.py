@@ -2,7 +2,7 @@ import os
 from config import Config
 from .fonts import Fonts
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
 @Client.on_message(filters.command('start'))
@@ -40,7 +40,7 @@ async def start(c, m):
 
 
 @Client.on_message(filters.private & filters.incoming & filters.text)
-async def style_buttons(c, m):
+async def style_buttons(c, m, cb=False):
     buttons = [[
         InlineKeyboardButton('𝚃𝚢𝚙𝚎𝚠𝚛𝚒𝚝𝚎𝚛', callback_data='style+typewriter'),
         InlineKeyboardButton('𝕆𝕦𝕥𝕝𝕚𝕟𝕖', callback_data='style+outline'),
@@ -72,17 +72,15 @@ async def style_buttons(c, m):
         ],[
         InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt")
     ]]
-    await style.nxt_Fonts(
-        chat_id=update.chat.id,
-        reply_markup=reply_markup,
-        disable_web_page_preview=True,
-        parse_mode="html",
-        reply_to_message_id=update.message_id
-    )
+        if not cb:
+        await m.reply_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+    else:
+        await m.answer()
+        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
 
 
-@Client.on_callback_query(filters.regex('^nxt') & filters.incoming & filters.text)
-async def nxt(c, m):
+@Client.on_callback_query(filters.regex('^nxt'))
+async def nxt(c, m, cb2=False):
     if m.data == "nxt":
         buttons = [[
             InlineKeyboardButton('🇸 🇵 🇪 🇨 🇮 🇦 🇱 ', callback_data='style+special'),
@@ -111,30 +109,32 @@ async def nxt(c, m):
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0'),
             InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
         ]]
-        await style.send_Fonts(
-           chat_id=update.chat.id,
-           reply_markup=reply_markup,
-           disable_web_page_preview=True,
-           parse_mode="html",
-           reply_to_message_id=update.message_id
-       )
+    if not cb2:
+        await m.answer()
+        await m.message.edit(nxt_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    else:
+        await m.reply_text(nxt_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True, quote=True)
 
 
-@Client.on_callback_query(filters.regex('^nxt2') & filters.incoming & filters.text)
+@Client.on_callback_query(filters.regex('^nxt2$') & filters.incoming & filters.text)
 async def nxt2(c, m):
     if m.data == "nxt2":
         buttons = [[
             InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+frozen')
             ],[
-            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='next')
+            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt2')
+            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='close')
         ]]
-        await style.send_Fonts(
-            chat_id=update.chat.id,
-            reply_markup=reply_markup,
-            disable_web_page_preview=True,
-            parse_mode="html",
-            reply_to_message_id=update.message_id
-        )
+    if cb:
+        await m.answer()
+        await m.message.edit(nxt2_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+    else:
+        await m.reply_text(nxt2_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True, quote=True)
+
+
+@Client.on_callback_query(filters.regex('^close$'))
+async def close(c, m):
+    await m.message.delete()
 
 
 @Client.on_callback_query(filters.regex('^style'))
