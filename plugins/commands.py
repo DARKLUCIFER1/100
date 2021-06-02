@@ -123,18 +123,12 @@ async def nxt2(c, m):
             InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+frozen')
             ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt2')
-            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='close')
         ]]
     if cb:
         await m.answer()
         await m.message.edit(nxt2_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
     else:
         await m.reply_text(nxt2_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True, quote=True)
-
-
-@Client.on_callback_query(filters.regex('^close$'))
-async def close(c, m):
-    await m.message.delete()
 
 
 @Client.on_callback_query(filters.regex('^style'))
