@@ -72,7 +72,7 @@ async def style_buttons(c, m):
         ],[
         InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt")
     ]]
-    await bot.send_style(
+    await bot.send_nxt(
         chat_id=update.chat.id,
         reply_markup=reply_markup,
         disable_web_page_preview=True,
@@ -112,7 +112,7 @@ async def nxt(c, m):
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0'),
             InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
         ]]
-        await bot.send_style(
+        await bot.send_nxt2(
            chat_id=update.chat.id,
            reply_markup=reply_markup,
            disable_web_page_preview=True,
@@ -129,7 +129,7 @@ async def nxt2(c, m):
             ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='next')
         ]]
-        await bot.send_text(
+        await bot.send_nxt(
             chat_id=update.chat.id,
             reply_markup=reply_markup,
             disable_web_page_preview=True,
