@@ -106,14 +106,13 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('ዪሀክቿነ', callback_data='style+qvnes'),
             InlineKeyboardButton('S̶t̶r̶i̶k̶e̶', callback_data='style+strike'),
             ],[
-            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0'),
             InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
         ]]
-    if not cb2:
-        await m.answer()
-        await m.message.edit(nxt_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
-    else:
-        await m.reply_text(nxt_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True, quote=True)
+        if not cb:
+            await m.reply_text(m.nxt2.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+        else:
+            await m.answer()
+            await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
 
 
 @Client.on_callback_query(filters.regex('^nxt2$') & filters.incoming & filters.text)
