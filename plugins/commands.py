@@ -60,7 +60,7 @@ async def style_buttons(c, m):
         ],[
         InlineKeyboardButton('𝘚𝘢𝘯𝘴', callback_data='style+slant'),
         InlineKeyboardButton('𝖲𝖺𝗇𝗌', callback_data='style+sim'),
-         InlineKeyboardButton('Ⓒ︎Ⓘ︎Ⓡ︎Ⓒ︎Ⓛ︎Ⓔ︎Ⓢ︎', callback_data='style+circles'),
+        InlineKeyboardButton('Ⓒ︎Ⓘ︎Ⓡ︎Ⓒ︎Ⓛ︎Ⓔ︎Ⓢ︎', callback_data='style+circles'),
         ],[
         InlineKeyboardButton('🅒︎🅘︎🅡︎🅒︎🅛︎🅔︎🅢︎', callback_data='style+circle_dark'),
         InlineKeyboardButton('𝔊𝔬𝔱𝔥𝔦𝔠', callback_data='style+gothic'),
