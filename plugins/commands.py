@@ -72,7 +72,7 @@ async def style_buttons(c, m):
         ],[
         InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt")
     ]]
-    await style.send_nxt(
+    await style.nxt_Fonts(
         chat_id=update.chat.id,
         reply_markup=reply_markup,
         disable_web_page_preview=True,
