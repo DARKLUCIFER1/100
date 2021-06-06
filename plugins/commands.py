@@ -110,7 +110,7 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('Next➡️', callback_data="nxt2")
         ]]
         await m.answer()
-        await m.message.edit_text_markup(InlineKeyboardMarkup(buttons))
+        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
         if not cb2:
             await m.reply_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
         else:
