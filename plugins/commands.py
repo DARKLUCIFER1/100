@@ -106,22 +106,23 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('ዪሀክቿነ', callback_data='style+qvnes'),
             InlineKeyboardButton('S̶t̶r̶i̶k̶e̶', callback_data='style+strike'),
             ],[
-            InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt2")
+            InlineKeyboardButton('✔️Back', callback_data="nxt+0"),
+            InlineKeyboardButton('Next➡️', callback_data="nxt2")
         ]]
-        if not cb:
+        if not cb2:
             await m.reply_text(m.nxt2.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
         else:
             await m.answer()
             await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
 
 
-@Client.on_callback_query(filters.regex('^nxt2$') & filters.incoming & filters.text)
+@Client.on_callback_query(filters.regex('^nxt2') & filters.incoming & filters.text)
 async def nxt2(c, m):
     if m.data == "nxt2":
         buttons = [[
             InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+frozen')
             ],[
-            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt2')
+            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt')
         ]]
     if cb:
         await m.answer()
