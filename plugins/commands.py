@@ -109,9 +109,12 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('✔️Back', callback_data="nxt+0"),
             InlineKeyboardButton('Next➡️', callback_data="nxt2")
         ]]
+            await m.answer()
+            await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
         if not cb2:
-            await m.reply_text(m.nxt2.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
+            await m.reply_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
         else:
+            await style_buttons(c, m, cb=True)
             await m.answer()
             await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
 
@@ -122,13 +125,12 @@ async def nxt2(c, m):
         buttons = [[
             InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+frozen')
             ],[
-            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt')
+            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0')
         ]]
-    if cb:
         await m.answer()
-        await m.message.edit(nxt2_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True)
+        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
     else:
-        await m.reply_text(nxt2_text, reply_markup=InlineKeyboardMarkup(buttons), disable_web_page_preview=True, quote=True)
+        await style_buttons(c, m, cb2=True)
 
 
 @Client.on_callback_query(filters.regex('^style'))
