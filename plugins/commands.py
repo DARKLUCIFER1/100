@@ -29,18 +29,27 @@ async def start(c, m):
             InlineKeyboardButton('𝕐𝕋 𝕊𝕦𝕡𝕡𝕠𝕣𝕥🎉', url="https://youtube.com/channel/UCmGBpXoM-OEm-FacOccVKgQ")
         ],
         [
+            InlineKeyboardButton('🤖𝔹𝕠𝕥 𝕌𝕡𝕕𝕒𝕥𝕖', url="t.me/mo_tech_yt"),
+            InlineKeyboardButton('𝕐𝕋 𝕊𝕦𝕡𝕡𝕠𝕣𝕥🎉', url="https://youtube.com/channel/UCmGBpXoM-OEm-FacOccVKgQ")
+        ],
+        [
             InlineKeyboardButton('🖥️ℍ𝕠𝕨 𝕋𝕠 𝕌𝕤𝕖🖥️', url="https://youtu.be/9b9uWNyuk9M")
         ]
     ]
-    await m.reply_text(
-        text=text,
-        reply_markup=InlineKeyboardMarkup(buttons)
+    reply_markup = InlineKeyboardMarkup(buttons)
+   
+    await bot.send_text(
+        chat_id=update.chat.id,
+        text=text.format(
+                update.owner.username),
+        reply_markup=reply_markup,
+        parse_mode="html",
     )
 
 
 
 @Client.on_message(filters.private & filters.incoming & filters.text)
-async def style_buttons(c, m, cb=False):
+async def style_buttons(c, m):
     buttons = [[
         InlineKeyboardButton('𝚃𝚢𝚙𝚎𝚠𝚛𝚒𝚝𝚎𝚛', callback_data='style+typewriter'),
         InlineKeyboardButton('𝕆𝕦𝕥𝕝𝕚𝕟𝕖', callback_data='style+outline'),
@@ -72,17 +81,21 @@ async def style_buttons(c, m, cb=False):
         ],[
         InlineKeyboardButton('ℕ𝕖𝕩𝕥 ➡️', callback_data="nxt")
     ]]
-    if not cb:
-        await m.reply_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
-    else:
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
+    reply_markup = InlineKeyboardMarkup(buttons)
+    
+    await bot.send_text(
+        chat_id=update.chat.id,
+        text=text,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+        parse_mode="html",
+        reply_to_message_id=update.message_id
+    )
 
 
-@Client.on_callback_query(filters.regex('^nxt'))
-async def nxt(c, m, cb2=False):
-    if m.data == "nxt":
-        buttons = [[
+@Client.on_message(filters.command(["nxt"]) & filters.private, group=1)
+async def nxt(bot, update):
+      uttons = [[
             InlineKeyboardButton('🇸 🇵 🇪 🇨 🇮 🇦 🇱 ', callback_data='style+special'),
             InlineKeyboardButton('🅂🅀🅄🄰🅁🄴🅂', callback_data='style+squares'),
             InlineKeyboardButton('🆂︎🆀︎🆄︎🅰︎🆁︎🅴︎🆂︎', callback_data='style+squares_bold'),
@@ -106,32 +119,37 @@ async def nxt(c, m, cb2=False):
             InlineKeyboardButton('ዪሀክቿነ', callback_data='style+qvnes'),
             InlineKeyboardButton('S̶t̶r̶i̶k̶e̶', callback_data='style+strike'),
             ],[
-            InlineKeyboardButton('✔️Back', callback_data="nxt+0"),
+            InlineKeyboardButton('✔️Back', callback_data="start"),
             InlineKeyboardButton('Next➡️', callback_data="nxt2")
         ]]
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
-        if not cb2:
-            await m.edit_text(m.text, reply_markup=InlineKeyboardMarkup(buttons), quote=True)
-        else:
-            await m.answer()
-            await style_buttons(c, m, cb=True)
-            await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
+        reply_markup = InlineKeyboardMarkup(buttons)
+    
+    await bot.send_text(
+        chat_id=update.chat.id,
+        text=text,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+        parse_mode="html",
+        reply_to_message_id=update.message_id
+    )
 
-
-@Client.on_callback_query(filters.regex('^nxt2') & filters.incoming & filters.text)
-async def nxt2(c, m):
-    if m.data == "nxt2":
+@Client.on_message(filters.command(["nxt2"]) & filters.private, group=1)
+async def nxt2(bot, update):
         buttons = [[
             InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+frozen')
             ],[
-            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt+0')
+            InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt')
         ]]
-        await m.answer()
-        await m.message.edit_reply_markup(InlineKeyboardMarkup(buttons))
-    else:
-        await style_buttons(c, m, cb2=True)
-
+        reply_markup = InlineKeyboardMarkup(buttons)
+    
+    await bot.send_text(
+        chat_id=update.chat.id,
+        text=text,
+        reply_markup=reply_markup,
+        disable_web_page_preview=True,
+        parse_mode="html",
+        reply_to_message_id=update.message_id
+    )
 
 @Client.on_callback_query(filters.regex('^style'))
 async def style(c, m):
