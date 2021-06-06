@@ -140,6 +140,7 @@ async def nxt2(bot, update):
             ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt')
         ]]
+
         reply_markup = InlineKeyboardMarkup(buttons)
     
     await bot.send_text(
@@ -150,6 +151,7 @@ async def nxt2(bot, update):
         parse_mode="html",
         reply_to_message_id=update.message_id
     )
+
 
 @Client.on_callback_query(filters.regex('^style'))
 async def style(c, m):
