@@ -95,7 +95,7 @@ async def style_buttons(c, m):
 
 @Client.on_message(filters.command(["nxt"]) & filters.private, group=1)
 async def nxt(bot, update):
-      uttons = [[
+      buttons = [[
             InlineKeyboardButton('🇸 🇵 🇪 🇨 🇮 🇦 🇱 ', callback_data='style+special'),
             InlineKeyboardButton('🅂🅀🅄🄰🅁🄴🅂', callback_data='style+squares'),
             InlineKeyboardButton('🆂︎🆀︎🆄︎🅰︎🆁︎🅴︎🆂︎', callback_data='style+squares_bold'),
