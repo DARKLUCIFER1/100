@@ -133,10 +133,12 @@ async def nxt(bot, update):
         reply_to_message_id=update.message_id
     )
 
-@Client.on_message(filters.command(["nxt2"]) & filters.private, group=1)
-async def nxt2(bot, update):
-        buttons = [[
+@Client.on_message(filters.private & filters.incoming & filters.text)
+async def style_buttons(c, m):
+    buttons = [[
             InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+frozen')
+            InlineKeyboardButton('ꪖꪀᦔꪖꪶꪊᥴ𝓲ꪖ', callback_data='style+andalucia'),
+            InlineKeyboardButton('爪卂几ᘜ卂', callback_data='style+manga'),
             ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt')
         ]]
