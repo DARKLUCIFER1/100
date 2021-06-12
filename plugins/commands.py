@@ -121,7 +121,7 @@ async def nxt(bot, update):
             ],[
             InlineKeyboardButton('✔️Back', callback_data="start"),
             InlineKeyboardButton('Next➡️', callback_data="nxt2")
-        ],]
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
     
     await bot.send_text(
