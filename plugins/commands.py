@@ -137,6 +137,8 @@ async def nxt(bot, update):
 async def nxt2(bot, update):
         buttons = [[
             InlineKeyboardButton('ᕙ𝑴ᕗᕙ𝒐ᕗᕙ𝑻ᕗᕙ𝒆ᕗᕙ𝒄ᕗᕙ𝒉ᕗ', callback_data='style+frozen')
+            InlineKeyboardButton('𝓈𝒸𝓇𝒾𝓅𝓉', callback_data='style+script'),
+            InlineKeyboardButton('𝓼𝓬𝓻𝓲𝓹𝓽', callback_data='style+script_bolt'),
             ],[
             InlineKeyboardButton('⬅️ 𝔹𝕒𝕔𝕜', callback_data='nxt')
         ]]
